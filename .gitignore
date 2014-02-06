@@ -1,0 +1,6 @@
+### https://raw.github.com/github/gitignore/master/Global/vagrant.gitignore
+
+.vagrant/
+
+
+packer_cache

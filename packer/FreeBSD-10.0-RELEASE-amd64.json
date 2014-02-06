@@ -1,0 +1,51 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "iso_url": "http://ftp.freebsd.org/pub/FreeBSD/releases/amd64/amd64/ISO-IMAGES/10.0/FreeBSD-10.0-RELEASE-amd64-disc1.iso",
+      "iso_checksum": "fd25619fa0d69c29bea8347b1070ac75",
+      "iso_checksum_type": "md5",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "10000s",
+      "guest_os_type": "FreeBSD_64",
+      "shutdown_command": "sudo shutdown -p now",
+      "boot_wait": "10s",
+      "boot_command": [
+        "<esc><wait>",
+        "load geom_mbr<enter>",
+        "load zfs<enter>",
+        "boot -s<enter>",
+        "<wait10>",
+        "/bin/sh<enter>",
+        "mdmfs -s 100m md1 /tmp<enter>",
+        "mdmfs -s 100m md2 /mnt<enter>",
+        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "fetch -o /tmp/setup http://{{ .HTTPIP }}:{{ .HTTPPort }}/install.sh<enter><wait5>",
+        "bsdinstall script /tmp/setup {{ .Name }}<enter>",
+        "<wait10><wait10><wait10><wait10>",
+        "y<enter><wait>"
+      ],
+      "http_directory": "http",
+      "vboxmanage": [
+        [ "modifyvm", "{{.Name}}", "--memory", "512" ],
+        [ "modifyvm", "{{.Name}}", "--cpus", "1" ]
+      ],
+      "disk_size": 20480
+    }
+  ],
+  "post-processors": [
+    "vagrant"
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+      "scripts": [
+        "scripts/virtualbox.sh",
+        "scripts/vagrant.sh",
+        "scripts/puppet.sh"
+      ]
+    }
+  ]
+}
