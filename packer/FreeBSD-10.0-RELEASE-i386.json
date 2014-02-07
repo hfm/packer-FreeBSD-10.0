@@ -36,7 +36,6 @@
   ],
   "post-processors": [
     {
-      "compression_level": 1,
       "output": "./builds/freebsd-10.0-i386_puppet.box",
       "type":   "vagrant"
     }
