@@ -1,17 +1,12 @@
 #!/bin/sh
 
-echo =========================================
-echo Installing vagrant keys
-echo =========================================
+echo 'rpcbind_enable="YES"' >> /etc/rc.conf
+echo 'nfs_server_enable="YES"' >> /etc/rc.conf
+echo 'mountd_flags="-r"' >> /etc/rc.conf
 
 mkdir -p /home/vagrant/.ssh
-chmod 700 /home/vagrant/.ssh
-cd /home/vagrant/.ssh
-
-curl -o authorized_keys -L 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub'
-chmod 600 /home/vagrant/.ssh/authorized_keys
+curl -o /home/vagrant/.ssh/authorized_keys -L 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub'
 chown -R vagrant /home/vagrant/.ssh
-
-ls -l /home/vagrant/.ssh/authorized_keys
+chmod -R go-rwsx /home/vagrant/.ssh
 
 exit
