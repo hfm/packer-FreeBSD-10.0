@@ -1,0 +1,55 @@
+{
+  "builders": [
+    {
+      "type":              "virtualbox-iso",
+      "iso_url":           "http://ftp.freebsd.org/pub/FreeBSD/releases/i386/i386/ISO-IMAGES/10.0/FreeBSD-10.0-RELEASE-i386-disc1.iso",
+      "iso_checksum":      "9d12797f008f6c180a2a514476c2dede",
+      "iso_checksum_type": "md5",
+      "ssh_username":      "vagrant",
+      "ssh_password":      "vagrant",
+      "ssh_wait_timeout":  "1000s",
+      "guest_os_type":     "FreeBSD",
+      "shutdown_command":  "echo 'shutdown -p now' | sudo su -",
+      "boot_wait":         "10s",
+      "http_directory":    "http",
+      "disk_size":         20480,
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "512"],
+        ["modifyvm", "{{.Name}}", "--cpus",   "1"]
+      ],
+      "boot_command": [
+        "<esc><wait>",
+        "load geom_mbr<enter>",
+        "load zfs<enter>",
+        "boot -s<enter>",
+        "<wait5><wait><wait>",
+        "/bin/sh<enter>",
+        "mdmfs -s 100m md1 /tmp<enter>",
+        "mdmfs -s 100m md2 /mnt<enter>",
+        "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
+        "fetch -o /tmp/setup http://{{ .HTTPIP }}:{{ .HTTPPort }}/install.sh<enter><wait><wait>",
+        "bsdinstall script /tmp/setup<enter>",
+        "<wait10><wait10><wait10>",
+        "y<enter>"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "compression_level": 1,
+      "output": "../builds/freebsd-10.0-i386_puppet.box",
+      "type":   "vagrant"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
+      "scripts": [
+        "scripts/vagrant.sh",
+        "scripts/virtualbox.sh",
+        "scripts/puppet.sh"
+      ]
+    }
+  ]
+}
