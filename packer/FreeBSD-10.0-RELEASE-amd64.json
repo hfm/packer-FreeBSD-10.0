@@ -13,6 +13,10 @@
       "boot_wait":         "10s",
       "http_directory":    "http",
       "disk_size":         20480,
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "512"],
+        ["modifyvm", "{{.Name}}", "--cpus", "1"]
+      ],
       "boot_command": [
         "<esc><wait>",
         "load geom_mbr<enter>",

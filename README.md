@@ -1,4 +1,4 @@
-# FreeBSD 10.0 with Packer
+# FreeBSD 10.0 amd64 with Packer
 
 ## build
 
