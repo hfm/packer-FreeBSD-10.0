@@ -1,6 +1,4 @@
-### https://raw.github.com/github/gitignore/master/Global/vagrant.gitignore
-
 .vagrant/
-
-
+freebsd-10.0-amd64_puppet.box
 packer_cache
+output-virtualbox-iso/

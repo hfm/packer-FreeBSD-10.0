@@ -1,5 +1,5 @@
 #!/bin/sh
 
-pkg -d install -y sysutils/puppet
+pkg install -y puppet
 
 exit

@@ -1,15 +1,26 @@
 #!/bin/sh
 
-# for virtualbox
-echo virtualbox-ose-additions
-pkg -d install -y virtualbox-ose-additions
+echo ====================================
+echo      virtualbox-ose-additions
+echo ====================================
+pkg install -y virtualbox-ose-additions
 
+echo ====================================
+echo         adding /etc/rc.conf
+echo ====================================
 cat <<'EOF' >> /etc/rc.conf
 
 # VirtualBox configuration
 vboxguest_enable="YES"
+vboxnet_enable="YES"
 vboxservice_enable="YES"
-vboxservice_flags="--disable-timesync"
+EOF
+
+echo ====================================
+echo      adding /boot/loader.conf
+echo ====================================
+cat <<'EOF' >> /boot/loader.conf
+vboxdrv_load="YES"
 EOF
 
 exit
