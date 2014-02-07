@@ -7,30 +7,30 @@
       "iso_checksum_type": "md5",
       "ssh_username":      "vagrant",
       "ssh_password":      "vagrant",
-      "ssh_wait_timeout":  "10000s",
+      "ssh_wait_timeout":  "1000s",
       "guest_os_type":     "FreeBSD_64",
-      "shutdown_command":  "echo 'shutdown -p now' | su -",
+      "shutdown_command":  "echo 'shutdown -p now' | sudo su -",
       "boot_wait":         "10s",
       "http_directory":    "http",
       "disk_size":         20480,
       "vboxmanage": [
         ["modifyvm", "{{.Name}}", "--memory", "512"],
-        ["modifyvm", "{{.Name}}", "--cpus", "1"]
+        ["modifyvm", "{{.Name}}", "--cpus",   "1"]
       ],
       "boot_command": [
         "<esc><wait>",
         "load geom_mbr<enter>",
         "load zfs<enter>",
         "boot -s<enter>",
-        "<wait10>",
+        "<wait5><wait><wait>",
         "/bin/sh<enter>",
         "mdmfs -s 100m md1 /tmp<enter>",
         "mdmfs -s 100m md2 /mnt<enter>",
         "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
-        "fetch -o /tmp/setup http://{{ .HTTPIP }}:{{ .HTTPPort }}/install.sh<enter><wait5>",
-        "bsdinstall script /tmp/setup {{ .Name }}<enter>",
+        "fetch -o /tmp/setup http://{{ .HTTPIP }}:{{ .HTTPPort }}/install.sh<enter><wait><wait>",
+        "bsdinstall script /tmp/setup<enter>",
         "<wait10><wait10><wait10>",
-        "y<enter><wait>"
+        "y<enter>"
       ]
     }
   ],
