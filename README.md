@@ -22,9 +22,11 @@ packer build packer/FreeBSD-10.0-RELEASE-i386.json
 ├── Vagrantfile
 ├── builds
 ├── http
-│   └── install.sh
+│   │── install.sh
+│   └── install_i386.sh
 ├── packer
-│   └── FreeBSD-10.0-RELEASE-amd64.json
+│   │── FreeBSD-10.0-RELEASE-amd64.json
+│   └── FreeBSD-10.0-RELEASE-i386.json
 └── scripts
     ├── puppet.sh
     ├── vagrant.sh
