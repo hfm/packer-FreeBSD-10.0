@@ -14,8 +14,8 @@
       "http_directory":    "http",
       "disk_size":         20480,
       "vboxmanage": [
-        ["modifyvm", "{{.Name}}", "--memory", "512"],
-        ["modifyvm", "{{.Name}}", "--cpus",   "1"]
+        ["modifyvm", "{{.Name}}", "--memory", "1024"],
+        ["modifyvm", "{{.Name}}", "--cpus",   "2"]
       ],
       "boot_command": [
         "<esc><wait>",
