@@ -8,6 +8,9 @@ cat >> /etc/rc.conf <<EOF
 ifconfig_em0="DHCP"
 sshd_enable="YES"
 dumpdev="AUTO"
+rpcbind_enable="YES"
+nfs_server_enable="YES"
+mountd_flags="-r"
 EOF
 
 pkg install -y bash sudo curl ca_root_nss
