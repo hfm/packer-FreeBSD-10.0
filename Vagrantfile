@@ -3,8 +3,7 @@
 
 Vagrant.configure("2") do |config|
   config.vm.guest = :freebsd
-  config.vm.box = "FreeBSD-10.0-amd64"
-  config.vm.box_url = "./builds/freebsd-10.0-amd64_puppet.box"
+  config.vm.synced_folder ".", "/vagrant", :nfs => true
 
   config.vm.define :amd64 do |a|
     a.vm.box = "FreeBSD-10.0-amd64"
@@ -17,6 +16,4 @@ Vagrant.configure("2") do |config|
     i.vm.box_url = "./builds/freebsd-10.0-i386_puppet.box"
     i.vm.network :private_network, ip: "192.168.2.101"
   end
-
-  config.vm.synced_folder ".", "/vagrant", :nfs => true
 end
