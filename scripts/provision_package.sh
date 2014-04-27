@@ -1,4 +1,4 @@
 #!/bin/sh
 
 pkg install -y puppet
-pkg install -y chef
+pkg install -y rubygem-chef
