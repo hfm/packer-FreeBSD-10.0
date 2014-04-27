@@ -11,7 +11,11 @@ vboxservice_enable="YES"
 EOF
 
 cat <<'EOF' >> /boot/loader.conf
+if_vtnet_load="YES"
 vboxdrv_load="YES"
+virtio_balloon_load="YES"
+virtio_blk_load="YES"
+virtio_scsi_load="YES"
 EOF
 
 exit
