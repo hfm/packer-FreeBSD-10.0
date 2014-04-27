@@ -10,7 +10,7 @@ sshd_enable="YES"
 dumpdev="AUTO"
 EOF
 
-pkg install -y bash sudo curl
+pkg install -y bash sudo curl ca_root_nss
 
 echo -n 'vagrant' | pw usermod root -h 0
 pw groupadd -n vagrant -g 1000
