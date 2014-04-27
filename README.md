@@ -1,5 +1,12 @@
 # FreeBSD 10.0 with Packer
 
+## install with vagrantcloud
+
+```sh
+vagrant init hfm4/freebsd-10.0
+vagrant up
+```
+
 ## build
 
 ### amd64 (x86\_64,x64x)
