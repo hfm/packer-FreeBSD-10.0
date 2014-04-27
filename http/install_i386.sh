@@ -13,7 +13,14 @@ nfs_server_enable="YES"
 mountd_flags="-r"
 EOF
 
-pkg install -y bash sudo curl ca_root_nss
+env ASSUME_ALWAYS_YES=1 pkg bootstrap
+pkg update
+pkg install -y sudo
+pkg install -y bash
+pkg install -y curl
+pkg install -y ca_root_nss
+
+ln -sf /usr/local/share/certs/ca-root-nss.crt /etc/ssl/cert.pem
 
 echo -n 'vagrant' | pw usermod root -h 0
 pw groupadd -n vagrant -g 1000
