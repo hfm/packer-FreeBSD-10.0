@@ -8,7 +8,6 @@ RSpec.configure do |c|
   options = {}
   host    = ""
   user    = ""
-  options = ""
 
   config = `vagrant ssh-config #{ENV["ROLE"]}`
   config.each_line do |line|
