@@ -1,5 +1,4 @@
 #!/bin/sh
 
 pkg install -y puppet
-
-exit
+pkg install -y chef
