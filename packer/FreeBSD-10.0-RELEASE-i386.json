@@ -28,9 +28,7 @@
         "mdmfs -s 100m md2 /mnt<enter>",
         "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait5>",
         "fetch -o /tmp/setup http://{{ .HTTPIP }}:{{ .HTTPPort }}/install_i386.sh<enter><wait><wait>",
-        "bsdinstall script /tmp/setup<enter>",
-        "<wait10><wait10><wait10>",
-        "y<enter>"
+        "bsdinstall script /tmp/setup<enter>"
       ]
     }
   ],
