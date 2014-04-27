@@ -1,0 +1,1 @@
+../amd64/os_spec.rb
