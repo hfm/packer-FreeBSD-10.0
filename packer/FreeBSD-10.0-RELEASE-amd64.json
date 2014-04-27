@@ -47,7 +47,7 @@
       "scripts": [
         "scripts/vagrant.sh",
         "scripts/virtualbox.sh",
-        "scripts/puppet.sh",
+        "scripts/provision_package.sh",
         "scripts/cleanup.sh"
       ]
     }
