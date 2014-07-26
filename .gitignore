@@ -1,5 +1,14 @@
+### https://raw.github.com/github/gitignore/170b9f808b34c9df63cbefb50c6b3517270755ec/Global/vagrant.gitignore
+
 .vagrant/
-freebsd-10.0-amd64_puppet.box
-packer_cache
-output-virtualbox-iso/
-freebsd-10.0-i386_puppet.box
+
+
+### https://raw.github.com/github/gitignore/170b9f808b34c9df63cbefb50c6b3517270755ec/packer.gitignore
+
+# Cache objects
+packer_cache/
+
+# For built boxes
+*.box
+
+
