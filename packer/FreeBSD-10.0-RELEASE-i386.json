@@ -1,21 +1,31 @@
 {
   "builders": [
     {
-      "type":              "virtualbox-iso",
-      "iso_url":           "http://ftp.freebsd.org/pub/FreeBSD/releases/i386/i386/ISO-IMAGES/10.0/FreeBSD-10.0-RELEASE-i386-disc1.iso",
-      "iso_checksum":      "9d12797f008f6c180a2a514476c2dede",
+      "type": "virtualbox-iso",
+      "iso_url": "http://ftp.freebsd.org/pub/FreeBSD/releases/i386/i386/ISO-IMAGES/10.0/FreeBSD-10.0-RELEASE-i386-disc1.iso",
+      "iso_checksum": "9d12797f008f6c180a2a514476c2dede",
       "iso_checksum_type": "md5",
-      "ssh_username":      "vagrant",
-      "ssh_password":      "vagrant",
-      "ssh_wait_timeout":  "1000s",
-      "guest_os_type":     "FreeBSD",
-      "shutdown_command":  "echo 'shutdown -p now' | sudo su -",
-      "boot_wait":         "10s",
-      "http_directory":    "http",
-      "disk_size":         20480,
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "1000s",
+      "guest_os_type": "FreeBSD",
+      "shutdown_command": "echo 'shutdown -p now' | sudo su -",
+      "boot_wait": "10s",
+      "http_directory": "http",
+      "disk_size": 20480,
       "vboxmanage": [
-        ["modifyvm", "{{.Name}}", "--memory", "1024"],
-        ["modifyvm", "{{.Name}}", "--cpus",   "2"]
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "1024"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ]
       ],
       "boot_command": [
         "<esc><wait>",
@@ -35,7 +45,7 @@
   "post-processors": [
     {
       "output": "./builds/freebsd-10.0-i386_puppet.box",
-      "type":   "vagrant"
+      "type": "vagrant"
     }
   ],
   "provisioners": [
