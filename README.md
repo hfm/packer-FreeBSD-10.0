@@ -35,7 +35,6 @@ packer build packer/FreeBSD-10.0-RELEASE-i386.json
 │   │── FreeBSD-10.0-RELEASE-amd64.json
 │   └── FreeBSD-10.0-RELEASE-i386.json
 └── scripts
-    ├── puppet.sh
     ├── vagrant.sh
     ├── virtualbox.sh
     └── cleanup.sh
