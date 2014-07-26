@@ -1,21 +1,24 @@
 require 'rake'
 require 'rspec/core/rake_task'
 
-task :spec => "spec:all"
-
-roles = `git ls-files spec`.split
-  .map {|f| f.split('/')[1]}
-  .uniq
-  .select {|dir| File.directory? "spec/#{dir}"}
+task :spec    => 'spec:all'
+task :default => :spec
 
 namespace :spec do
-  task :all => roles
+  targets = []
+  Dir.glob('./spec/*').each do |dir|
+    next unless File.directory?(dir)
+    targets << File.basename(dir)
+  end
 
-  roles.each do |r|
-    desc "Run serverspec code for #{r}"
-    RSpec::Core::RakeTask.new("#{r}") do |t|
-      ENV["ROLE"] = r
-      t.pattern = "spec/#{r}/*_spec.rb"
+  task :all     => targets
+  task :default => :all
+
+  targets.each do |target|
+    desc "Run serverspec tests to #{target}"
+    RSpec::Core::RakeTask.new(target.to_sym) do |t|
+      ENV['TARGET_HOST'] = target
+      t.pattern = "spec/#{target}/*_spec.rb"
     end
   end
 end
