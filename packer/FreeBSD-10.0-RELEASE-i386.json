@@ -9,6 +9,7 @@
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "1000s",
       "guest_os_type": "FreeBSD",
+      "headless": "true",
       "shutdown_command": "echo 'shutdown -p now' | sudo su -",
       "boot_wait": "10s",
       "http_directory": "http",
