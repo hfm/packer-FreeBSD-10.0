@@ -45,7 +45,7 @@
   ],
   "post-processors": [
     {
-      "output": "./builds/freebsd-10.0-amd64_puppet.box",
+      "output": "./builds/freebsd-10.0-amd64.box",
       "type": "vagrant"
     }
   ],
