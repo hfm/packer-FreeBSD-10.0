@@ -2,8 +2,6 @@
 
 rm -f /home/vagrant/*.iso
 rm -rf /tmp/*
-rm -rf /tmp/chef*
-rm -rf /tmp/puppet*
 rm -rf /var/db/freebsd-update/files
 mkdir /var/db/freebsd-update/files
 rm -f /var/db/freebsd-update/*-rollback
